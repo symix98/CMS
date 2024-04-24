@@ -1,0 +1,206 @@
+<div class="card">
+  <p-toast></p-toast>
+  <p-toolbar styleClass="mb-4 gap-2">
+    <ng-template pTemplate="left">
+      <button
+        pButton
+        pRipple
+        label="New"
+        icon="pi pi-plus"
+        class="p-button-primary mr-2"
+        (click)="openNewRoom()"
+      ></button>
+      <button
+        pButton
+        pRipple
+        label="Delete"
+        icon="pi pi-trash"
+        class="p-button-danger mr-2"
+        (click)="deleteSelectedRooms()"
+        [disabled]="!selectedRooms || !selectedRooms.length"
+      ></button>
+      <!-- <button
+        pButton
+        pRipple
+        label="Reserve a Room"
+        icon="pi pi-bookmark"
+        class="p-button-info"
+        (click)="openReserveRoom()"
+      ></button> -->
+    </ng-template>
+
+    <ng-template pTemplate="right">
+      <!-- <p-fileUpload
+        mode="basic"
+        accept="image/*"
+        [maxFileSize]="1000000"
+        label="Import"
+        chooseLabel="Import"
+        class="mr-2 inline-block"
+      ></p-fileUpload> -->
+      <button
+        pButton
+        pRipple
+        label="Export Rooms"
+        icon="pi pi-upload"
+        class="p-button-help"
+        (click)="exportRooms()"
+      ></button>
+      <!-- <button
+        pButton
+        pRipple
+        label="Download Template"
+        icon="pi pi-download"
+        class="p-button-help"
+        style="margin-left: .5rem;"
+        (click)="downloadTemplate()"
+      ></button> -->
+    </ng-template>
+  </p-toolbar>
+
+  <p-table
+    #dt
+    [value]="rooms"
+    [rows]="10"
+    [paginator]="true"
+    [globalFilterFields]="[
+      'roomNo',
+      'campId.campName',
+      'block',
+      'floor',
+      'roomCategory',
+      'bedCount',
+      'monthlyRate',
+      'dailyRate',
+      'bedRate',
+      'reservationRate'
+    ]"
+    [(selection)]="selectedRooms"
+    [rowHover]="true"
+    dataKey="id"
+    currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+    [showCurrentPageReport]="true"
+    [scrollable]="true"
+    scrollHeight="400px"
+  >
+    <ng-template pTemplate="caption">
+      <div class="flex align-items-center justify-content-between">
+        <h5 class="m-0">Manage Rooms</h5>
+        <span class="p-input-icon-left">
+          <i class="pi pi-search"></i>
+          <input
+            pInputText
+            type="text"
+            (input)="dt.filterGlobal($any($event.target).value, 'contains')"
+            placeholder="Search by Room No..."
+          />
+        </span>
+      </div>
+    </ng-template>
+    <ng-template pTemplate="header">
+      <tr>
+        <th style="width: 4rem">
+          <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
+        </th>
+        <th pSortableColumn="roomNo" style="min-width: 15rem">
+          Room Number <p-sortIcon field="roomNo"></p-sortIcon>
+        </th>
+        <th pSortableColumn="campId">
+          Camp <p-sortIcon field="campId"></p-sortIcon>
+        </th>
+        <th pSortableColumn="block" style="min-width: 10rem">
+          Block <p-sortIcon field="block"></p-sortIcon>
+        </th>
+        <th pSortableColumn="floor">
+          Floor <p-sortIcon field="floor"></p-sortIcon>
+        </th>
+        <th pSortableColumn="roomCategory" style="min-width: 10rem">
+          Category <p-sortIcon field="roomCategory"></p-sortIcon>
+        </th>
+        <th pSortableColumn="bedCount" style="min-width: 10rem">
+          Bed Count <p-sortIcon field="bedCount"></p-sortIcon>
+        </th>
+        <th pSortableColumn="monthlyRate" style="min-width: 10rem">
+          Monthly Rate <p-sortIcon field="monthlyRate"></p-sortIcon>
+        </th>
+        <th pSortableColumn="dailyRate" style="min-width: 10rem">
+          Daily Rate <p-sortIcon field="dailyRate"></p-sortIcon>
+        </th>
+        <th pSortableColumn="bedRate" style="min-width: 10rem">
+          Bed Rate <p-sortIcon field="bedRate"></p-sortIcon>
+        </th>
+        <th pSortableColumn="reservationRate" style="min-width: 10rem">
+          Reservation Rate <p-sortIcon field="reservationRate"></p-sortIcon>
+        </th>
+        <th pSortableColumn="roomAllocation" style="min-width: 10rem">
+          Allocation <p-sortIcon field="roomAllocation"></p-sortIcon>
+        </th>
+        <th pSortableColumn="cateringId" style="min-width: 10rem">
+          Catering <p-sortIcon field="cateringId"></p-sortIcon>
+        </th>
+        <th pSortableColumn="availableFrom" style="min-width: 10rem">
+          Available From <p-sortIcon field="availableFrom"></p-sortIcon>
+        </th>
+        <th pSortableColumn="roomDescription" style="min-width: 10rem">
+          Description <p-sortIcon field="roomDescription"></p-sortIcon>
+        </th>
+        <th pSortableColumn="roomStatus" style="min-width: 10rem">
+          Status <p-sortIcon field="roomStatus"></p-sortIcon>
+        </th>
+        <th pSortableColumn="actions" style="min-width: 10rem">
+          Actions <p-sortIcon field="actions"></p-sortIcon>
+        </th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-room>
+      <tr>
+        <td>
+          <p-tableCheckbox [value]="room"></p-tableCheckbox>
+        </td>
+        <td (click)="openEditRoomDetails(room)">{{ room.roomNo }}</td>
+        <td (click)="openEditRoomDetails(room)">{{ room.camp?.campName }}</td>
+        <td (click)="openEditRoomDetails(room)">{{ room.block }}</td>
+        <td (click)="openEditRoomDetails(room)">{{ room.floor }}</td>
+        <td (click)="openEditRoomDetails(room)">{{ room.roomCategory }}</td>
+        <td (click)="openEditRoomDetails(room)">{{ room.bedCount }}</td>
+        <td (click)="openEditRoomDetails(room)">{{ room.monthlyRate }}</td>
+        <td (click)="openEditRoomDetails(room)">{{ room.dailyRate }}</td>
+        <td (click)="openEditRoomDetails(room)">{{ room.bedRate }}</td>
+        <td (click)="openEditRoomDetails(room)">{{ room.reservationRate }}</td>
+        <td (click)="openEditRoomDetails(room)">{{ room.roomAllocation }}</td>
+        <td (click)="openEditRoomDetails(room)">
+          {{ room.catering?.cateringName }}
+        </td>
+        <td (click)="openEditRoomDetails(room)">{{ room.availableFrom }}</td>
+        <td (click)="openEditRoomDetails(room)">{{ room.roomDescription }}</td>
+        <td (click)="openEditRoomDetails(room)">
+          <p-tag
+            [value]="room.roomStatus"
+            [severity]="getSeverity(room.roomStatus)"
+          ></p-tag>
+        </td>
+        <td alignFrozen="right" pFrozenColumn [frozen]="true">
+          <button
+            pButton
+            pRipple
+            icon="pi pi-pencil"
+            class="p-button-rounded p-button-success mr-2"
+            (click)="openEditRoom(room)"
+          ></button>
+          <button
+            pButton
+            pRipple
+            icon="pi pi-trash"
+            class="p-button-rounded p-button-warning"
+            (click)="deleteRoom(room.id)"
+          ></button>
+        </td>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="summary">
+      <div class="flex align-items-center justify-content-between">
+        In total there are {{ rooms ? rooms.length : 0 }} rooms.
+      </div>
+    </ng-template>
+  </p-table>
+</div>

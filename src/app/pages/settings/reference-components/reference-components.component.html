@@ -1,0 +1,43 @@
+<div class='card' style="margin-bottom: 0rem;">
+    <p-toolbar>
+        <div class='p-toolbar-group-left'>
+            <label class='mr-2'><b>Select the Reference Table : </b></label>
+
+            <p-dropdown [options]='referenceTablesList' [(ngModel)]='selectedRefTableName'
+                (onChange)='onRefTableSelected($event)' placeholder='Select a Reference Table' optionLabel='name'
+                showClear=true [disabled]='false' [style]="{'width': '400px'}">
+            </p-dropdown>
+        </div>
+    </p-toolbar>
+
+    <div class='mb-5'></div>
+    <div *ngIf='selectedRefTableName'>
+        <h4>{{ selectedRefTableName.name }}</h4>
+        <!-- <h6>The Selected Reference Table is {{ selectedRefTableName.name }}.</h6> -->
+
+        <div *ngIf="selectedRefTableName.name == 'Projects'">
+            <app-projects></app-projects>
+        </div>
+        <div *ngIf="selectedRefTableName.name == 'Nationality'">
+            <app-nationality></app-nationality>
+        </div>
+        <div *ngIf="selectedRefTableName.name == 'Inactive Reason'">
+            <app-inactive-reasons></app-inactive-reasons>
+        </div>
+        <div *ngIf="selectedRefTableName.name == 'Employee Company'">
+            <app-employee-company></app-employee-company>
+        </div>
+        <div *ngIf="selectedRefTableName.name == 'Services'">
+            <app-services></app-services>
+        </div>
+        <div *ngIf="selectedRefTableName.name == 'Company'">
+            <app-company></app-company>
+        </div>
+        <div *ngIf="selectedRefTableName.name == 'Camp'">
+            <app-camp></app-camp>
+        </div>
+        <div *ngIf="selectedRefTableName.name == 'Catering'">
+            <app-catering></app-catering>
+        </div>
+    </div>
+</div>

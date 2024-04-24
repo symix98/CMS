@@ -1,0 +1,180 @@
+<div class="card">
+  <p-toast></p-toast>
+  <p-toolbar styleClass="mb-4 gap-2">
+    <ng-template pTemplate="left">
+      <button
+        pButton
+        pRipple
+        label="New"
+        icon="pi pi-plus"
+        class="p-button-primary mr-2"
+        (click)="openNewTransaction()"
+      ></button>
+      <button
+        pButton
+        pRipple
+        label="Delete"
+        icon="pi pi-trash"
+        class="p-button-danger"
+        (click)="deleteSelectedTransactions()"
+        [disabled]="!selectedTransactions || !selectedTransactions.length"
+      ></button>
+    </ng-template>
+
+    <ng-template pTemplate="right">
+      <!-- <p-fileUpload
+        mode="basic"
+        accept="image/*"
+        [maxFileSize]="1000000"
+        label="Import"
+        chooseLabel="Import"
+        class="mr-2 inline-block"
+      ></p-fileUpload> -->
+      <button
+        pButton
+        pRipple
+        label="Export Bookings"
+        icon="pi pi-upload"
+        class="p-button-help"
+        (click)="exportTransactions()"
+      ></button>
+      <!-- <button
+        pButton
+        pRipple
+        label="Download Template"
+        icon="pi pi-download"
+        class="p-button-help"
+        style="margin-left: .5rem;"
+        (click)="downloadTemplate()"
+      ></button> -->
+    </ng-template>
+  </p-toolbar>
+
+  <p-table
+  #dt
+  [value]="transactions"
+  [rows]="10"
+  [paginator]="true"
+  [globalFilterFields]="[
+    'id',
+    'roomId',
+    'bedNo',
+    'badgeNo',
+    'checkInDate',
+    'checkOutDate',
+    'leaveStartDate',
+    'leaveEndDate',
+    'remarks'
+  ]"
+  [(selection)]="selectedTransactions"
+  [rowHover]="true"
+  dataKey="id"
+  currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+  [showCurrentPageReport]="true"
+  [tableStyle]="{ 'width': '50vw' }"
+  >
+    <ng-template pTemplate="caption">
+      <div class="flex align-items-center justify-content-between">
+        <h5 class="m-0">Manage Bookings</h5>
+        <span class="p-input-icon-left">
+          <i class="pi pi-search"></i>
+          <input
+            pInputText
+            type="text"
+            (input)="dt.filterGlobal($any($event.target).value, 'contains')"
+            placeholder="Search..."
+          />
+        </span>
+      </div>
+    </ng-template>
+    <ng-template pTemplate="header">
+      <tr>
+        <th>
+          <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
+        </th>
+        <th pSortableColumn="id" style="min-width: 5%">
+          Id<p-sortIcon field="id"></p-sortIcon>
+        </th>
+        <th pSortableColumn="roomId" style="min-width: 5%">
+          Room Id<p-sortIcon field="roomId"></p-sortIcon>
+        </th>
+        <th pSortableColumn="bedNo" style="min-width: 5%">
+          Bed Number<p-sortIcon field="bedNo"></p-sortIcon>
+        </th>
+        <th pSortableColumn="badgeNo" style="min-width: 5%">
+          Badge No<p-sortIcon field="badgeNo"></p-sortIcon>
+        </th>
+        <th pSortableColumn="checkInDate" style="min-width: 20%">
+          Checkin Date<p-sortIcon field="checkInDate"></p-sortIcon>
+        </th>
+        <th pSortableColumn="checkOutDate" style="min-width: 20%">
+          Check Out Date<p-sortIcon field="checkOutDate"></p-sortIcon>
+        </th>
+        <th pSortableColumn="leaveStartDate" style="min-width: 20%">
+          Leave Start Date<p-sortIcon field="leaveStartDate"></p-sortIcon>
+        </th>
+        <th pSortableColumn="leaveEndDate" style="min-width: 20%">
+          Leave End Date<p-sortIcon field="leaveEndDate"></p-sortIcon>
+        </th>
+        <th pSortableColumn="remarks" style="min-width: 20%">
+          Remarks<p-sortIcon field="remarks"></p-sortIcon>
+        </th>
+        <th pSortableColumn="guestStatus" style="width: 6%">
+          Status <p-sortIcon field="guestStatus"></p-sortIcon>
+        </th>
+        <th style="width: 6%">Acions</th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-transaction>
+      <tr>
+        <td>
+          <p-tableCheckbox [value]="transaction"></p-tableCheckbox>
+        </td>
+        <td>{{ transaction.id }}</td>
+        <td>{{ transaction.roomId }}</td>
+        <td>{{ transaction.bedNo || 'N/A' }}</td>
+        <td>{{ transaction.badgeNo }}</td>
+        <td>{{ transaction.checkInDate }}</td>
+        <td *ngIf="transaction.guestStatus !== 'annual leave' || transaction.guestStatus !== 'emergency leave' || transaction.guestStatus !== 'long leave' || transaction.guestStatus !== 'sick leave' || transaction.guestStatus !== 'emergency leave' || transaction.guestStatus !== 'emergency leave' || transaction.guestStatus !== 'resigned' || transaction.guestStatus !== 'released' || transaction.guestStatus !== 'R&R' ">{{ transaction.checkOutDate || 'N/A' }}</td>
+        <td *ngIf="transaction.guestStatus !== 'annual leave' || transaction.guestStatus !== 'emergency leave' || transaction.guestStatus !== 'long leave' || transaction.guestStatus !== 'sick leave' || transaction.guestStatus !== 'emergency leave' || transaction.guestStatus !== 'emergency leave' || transaction.guestStatus !== 'resigned' || transaction.guestStatus !== 'released' || transaction.guestStatus !== 'R&R' ">{{ transaction.leaveStartDate || 'N/A' }}</td>
+        <td *ngIf="transaction.guestStatus !== 'annual leave' || transaction.guestStatus !== 'emergency leave' || transaction.guestStatus !== 'long leave' || transaction.guestStatus !== 'sick leave' || transaction.guestStatus !== 'emergency leave' || transaction.guestStatus !== 'emergency leave' || transaction.guestStatus !== 'resigned' || transaction.guestStatus !== 'released' || transaction.guestStatus !== 'R&R' ">{{ transaction.leaveEndDate || 'N/A' }}</td>
+        <td>{{ transaction.remarks || 'N/A' }}</td>
+        <td>
+          <p-tag
+            [value]="transaction.guestStatus"
+            [severity]="getSeverity(transaction.guestStatus)? 'success' : 'danger' "
+          ></p-tag>
+        </td>
+        <td style="align-items: start;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        width: 8rem;"
+        alignFrozen="right"
+        pFrozenColumn
+        [frozen]="true">
+          <button
+            pButton
+            pRipple
+            icon="pi pi-pencil"
+            class="p-button-rounded p-button-success"
+            (click)="openEditTransaction(transaction)"
+          ></button>
+          <button
+            pButton
+            pRipple
+            icon="pi pi-trash"
+            class="p-button-rounded p-button-warning mr-2"
+            (click)="deleteTransaction(transaction)"
+          ></button>
+        </td>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="summary">
+      <div class="flex align-items-center justify-content-between">
+        In total there are
+        {{ transactions ? transactions.length : 0 }} transactions.
+      </div>
+    </ng-template>
+  </p-table>
+</div>

@@ -1,0 +1,266 @@
+<div *ngIf='this.projectRefType'>
+    <div class='p-fluid card'>
+        <div class='flex-container'>
+            <div class='field col-12' style='padding: 10px'>
+                <label><b>Name : </b></label>
+                <input type='text' pInputText (change)='edited($event)' [disabled]='isInputDisabled'
+                    [(ngModel)]='projectName' />
+            </div>
+            <div class='field col-12' style='padding: 10px'>
+                <label><b>Code : </b></label>
+                <input type='text' pInputText (change)='edited($event)' [disabled]='isInputDisabled'
+                    [(ngModel)]='projectCode' />
+            </div>
+            <div class='field col-12' style='padding: 10px'>
+                <label><b>Description : </b></label>
+                <input type='text' pInputText (change)='edited($event)' [disabled]='isInputDisabled'
+                    [(ngModel)]='projectDesc' />
+            </div>
+        </div>
+    </div>
+
+    <div class="grid grid-nogutter justify-content-end">
+        <button pButton type="button" [label]="buttonName" [icon]="buttonIcon" class="p-button-sm mr-2"
+            [disabled]='isDisabled' (click)='saveProjectRef()'></button>
+        <p-button label="Close" (click)="closeForm()"></p-button>
+    </div>
+</div>
+
+
+<div *ngIf='this.nationalityRefType'>
+    <div class='p-fluid card'>
+        <div class='flex-container'>
+            <div class='field col-12' style='padding: 10px'>
+                <label><b>Name : </b></label>
+                <input type='text' pInputText (change)='edited($event)' [disabled]='isInputDisabled'
+                    [(ngModel)]='nationalityName' />
+            </div>
+            <div class='field col-12' style='padding: 10px'>
+                <label><b>Code : </b></label>
+                <input type='text' pInputText (change)='edited($event)' [disabled]='isInputDisabled'
+                    [(ngModel)]='nationalityCode' />
+            </div>
+            <div class='field col-12' style='padding: 10px'>
+                <label><b>Description : </b></label>
+                <input type='text' pInputText (change)='edited($event)' [disabled]='isInputDisabled'
+                    [(ngModel)]='nationalityDesc' />
+            </div>
+        </div>
+    </div>
+
+    <div class="grid grid-nogutter justify-content-end">
+        <button pButton type="button" [label]="buttonName" [icon]="buttonIcon" class="p-button-sm mr-2"
+            [disabled]='isDisabled' (click)='saveNationalityRef()'></button>
+        <p-button label="Close" (click)="closeForm()"></p-button>
+    </div>
+</div>
+
+<div *ngIf='this.inactiveReasonRefType'>
+    <div class='p-fluid card'>
+        <div class='flex-container'>
+            <div class='field col-12' style='padding: 10px'>
+                <label><b>Name : </b></label>
+                <input type='text' pInputText (change)='edited($event)' [disabled]='isInputDisabled'
+                    [(ngModel)]='inactiveReasonName' />
+            </div>
+            <div class='field col-12' style='padding: 10px'>
+                <label><b>Code : </b></label>
+                <input type='text' pInputText (change)='edited($event)' [disabled]='isInputDisabled'
+                    [(ngModel)]='inactiveReasonCode' />
+            </div>
+            <div class='field col-12' style='padding: 10px'>
+                <label><b>Description : </b></label>
+                <input type='text' pInputText (change)='edited($event)' [disabled]='isInputDisabled'
+                    [(ngModel)]='inactiveReasonDesc' />
+            </div>
+        </div>
+    </div>
+
+    <div class="grid grid-nogutter justify-content-end">
+        <button pButton type="button" [label]="buttonName" [icon]="buttonIcon" class="p-button-sm mr-2"
+            [disabled]='isDisabled' (click)='saveInactiveReasonRef()'></button>
+        <p-button label="Close" (click)="closeForm()"></p-button>
+    </div>
+</div>
+
+<div *ngIf='this.employeeCompanyRefType'>
+    <div class='p-fluid card'>
+        <div class='flex-container'>
+            <div class='field col-12' style='padding: 10px'>
+                <label><b>Name : </b></label>
+                <input type='text' pInputText (change)='edited($event)' [disabled]='isInputDisabled'
+                    [(ngModel)]='employeeCompanyName' />
+            </div>
+            <div class='field col-12' style='padding: 10px'>
+                <label><b>Code : </b></label>
+                <input type='text' pInputText (change)='edited($event)' [disabled]='isInputDisabled'
+                    [(ngModel)]='employeeCompanyCode' />
+            </div>
+            <div class='field col-12' style='padding: 10px'>
+                <label><b>Description : </b></label>
+                <input type='text' pInputText (change)='edited($event)' [disabled]='isInputDisabled'
+                    [(ngModel)]='employeeCompanyDesc' />
+            </div>
+        </div>
+    </div>
+
+    <div class="grid grid-nogutter justify-content-end">
+        <button pButton type="button" [label]="buttonName" [icon]="buttonIcon" class="p-button-sm mr-2"
+            [disabled]='isDisabled' (click)='saveEmployeeCompanyRef()'></button>
+        <p-button label="Close" (click)="closeForm()"></p-button>
+    </div>
+</div>
+
+
+<div *ngIf='this.companyRefType'>
+    <div class='p-fluid card'>
+        <div class='flex-container'>
+            <div class='field col-12' style='padding: 10px'>
+                <label><b>Company Name : </b></label>
+                <input type='text' pInputText (change)='edited($event)' [disabled]='isInputDisabled'
+                    [(ngModel)]='companyName' />
+            </div>
+            <div class='field col-12' style='padding: 10px'>
+                <label><b>Location : </b></label>
+                <input type='text' pInputText (change)='edited($event)' [disabled]='isInputDisabled'
+                    [(ngModel)]='location' />
+            </div>
+
+            <div class='field col-12' style='padding: 10px'>
+                <label><b>Services : </b></label>
+                <p-multiSelect name="servicesProvided" [options]="servicesList" defaultLabel="Select Services"
+                    optionLabel="serviceName" optionValue="serviceName" [(ngModel)]="selectedService"></p-multiSelect>
+            </div>
+
+            <div class='field col-12' style='padding: 10px'>
+                <label><b>Contact Person : </b></label>
+                <input type='text' pInputText (change)='edited($event)' [disabled]='isInputDisabled'
+                    [(ngModel)]='contactPerson' />
+            </div>
+            <div class='field col-12' style='padding: 10px'>
+                <label><b>Contact No : </b></label>
+                <input type='text' pInputText (change)='edited($event)' [disabled]='isInputDisabled'
+                    [(ngModel)]='contactNo' />
+            </div>
+            <div class='field col-12' style='padding: 10px'>
+                <label><b>Contact Email : </b></label>
+                <input type='text' pInputText (change)='edited($event)' [disabled]='isInputDisabled'
+                    [(ngModel)]='contactEmail' />
+            </div>
+            <!-- <div class='field col-12' style='padding: 10px'>
+                <label><b>Description : </b></label>
+                <input type='text' pInputText (change)='edited($event)' [disabled]='isInputDisabled'
+                    [(ngModel)]='remarks' />
+            </div> -->
+        </div>
+    </div>
+
+    <div class="grid grid-nogutter justify-content-end">
+        <button pButton type="button" [label]="buttonName" [icon]="buttonIcon" class="p-button-sm mr-2"
+            [disabled]='isDisabled' (click)='saveCompanyRef()'></button>
+        <p-button label="Close" (click)="closeForm()"></p-button>
+    </div>
+</div>
+
+<div *ngIf='this.serviceRefType'>
+    <div class='p-fluid card'>
+        <div class='flex-container'>
+            <div class='field col-12' style='padding: 10px'>
+                <label><b>Service Name : </b></label>
+                <input type='text' pInputText (change)='edited($event)' [disabled]='isInputDisabled'
+                    [(ngModel)]='serviceName' />
+            </div>
+            <div class='field col-12' style='padding: 10px'>
+                <label><b>Description : </b></label>
+                <input type='text' pInputText (change)='edited($event)' [disabled]='isInputDisabled'
+                    [(ngModel)]='serviceDesc' />
+            </div>
+        </div>
+    </div>
+
+    <div class="grid grid-nogutter justify-content-end">
+        <button pButton type="button" [label]="buttonName" [icon]="buttonIcon" class="p-button-sm mr-2"
+            [disabled]='isDisabled' (click)='saveServiceRef()'></button>
+        <p-button label="Close" (click)="closeForm()"></p-button>
+    </div>
+</div>
+
+<div *ngIf='this.campRefType'>
+    <div class='p-fluid card'>
+        <div class='flex-container'>
+            <div class='field col-12' style='padding: 10px'>
+                <label><b>Company : </b></label>
+                <p-dropdown [options]="companyList" [(ngModel)]="selectedCompany" [showClear]="true" optionLabel="companyName" optionValue = "id"
+                    placeholder="Select Company"></p-dropdown>
+            </div>
+
+            <div class='field col-12' style='padding: 10px'>
+                <label><b>Camp Name : </b></label>
+                <input type='text' pInputText (change)='edited($event)' [disabled]='isInputDisabled'
+                    [(ngModel)]='campName' />
+            </div>
+            <div class='field col-12' style='padding: 10px'>
+                <label><b>Location : </b></label>
+                <input type='text' pInputText (change)='edited($event)' [disabled]='isInputDisabled'
+                    [(ngModel)]='campLocation' />
+            </div>
+
+            <div class='field col-12' style='padding: 10px'>
+                <label><b>Description : </b></label>
+                <input type='text' pInputText (change)='edited($event)' [disabled]='isInputDisabled'
+                    [(ngModel)]='campRemarks' />
+            </div>
+        </div>
+    </div>
+
+    <div class="grid grid-nogutter justify-content-end">
+        <button pButton type="button" [label]="buttonName" [icon]="buttonIcon" class="p-button-sm mr-2"
+            [disabled]='isDisabled' (click)='saveCampRef()'></button>
+        <p-button label="Close" (click)="closeForm()"></p-button>
+    </div>
+</div>
+
+<div *ngIf='this.cateringRefType'>
+    <div class='p-fluid card'>
+        <div class='flex-container'>
+            <div class='field col-12' style='padding: 10px'>
+                <label><b>Catering Name : </b></label>
+                <input type='text' pInputText (change)='edited($event)' [disabled]='isInputDisabled'
+                    [(ngModel)]='cateringName' />
+            </div>
+            <div class='field col-12' style='padding: 10px'>
+                <label><b>Location : </b></label>
+                <input type='text' pInputText (change)='edited($event)' [disabled]='isInputDisabled'
+                    [(ngModel)]='cateringLocation' />
+            </div>
+            <div class='field col-12' style='padding: 10px'>
+                {{selectedMessCategory}}
+                <label><b>Mess Category : </b></label>
+                <p-dropdown [options]="messCategoryList" [(ngModel)]="selectedMessCategory" [showClear]="true" optionLabel="label" optionValue = "label"
+                    placeholder="Select Category"></p-dropdown>
+            </div>
+            <div class='field col-12' style='padding: 10px'>
+                <label><b>Rate : </b></label>
+                <input type='number' pInputText (change)='edited($event)' [disabled]='isInputDisabled'
+                    [(ngModel)]='rate' />
+            </div>
+            <div class='field col-12' style='padding: 10px'>
+                <label><b>Upgraded Rate : </b></label>
+                <input type='number' pInputText (change)='edited($event)' [disabled]='isInputDisabled'
+                    [(ngModel)]='upgradedRate' />
+            </div>
+
+            <div class='field col-12' style='padding: 10px'>
+                <label><b>Description : </b></label>
+                <input type='text' pInputText (change)='edited($event)' [disabled]='isInputDisabled'
+                    [(ngModel)]='campRemarks' />
+            </div>
+        </div>
+    </div>
+
+    <div class="grid grid-nogutter justify-content-end">
+        <button pButton type="button" [label]="buttonName" [icon]="buttonIcon" class="p-button-sm mr-2"
+            [disabled]='isDisabled' (click)='saveCateringRef()'></button>
+        <p-button label="Close" (click)="closeForm()"></p-button>
+    </div>
+</div>

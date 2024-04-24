@@ -1,0 +1,46 @@
+<div class="card" *ngIf="bedDetail">
+  <div class="grid p-fluid mb-2">
+    <div class="col-6">
+      <label for="bedNo">Bed Number <span>(*)</span></label>
+      <input
+        type="text"
+        pInputText
+        id="bedNo"
+        name="bedNo"
+        [(ngModel)]="bedDetail.bedNo"
+      />
+    </div>
+
+    <div class="col-6">
+      <label for="bedStatus">Bed Status <span>(*)</span></label>
+      <input
+        type="text"
+        pInputText
+        id="bedStatus"
+        name="bedStatus"
+        [(ngModel)]="bedDetail.bedStatus"
+      />
+    </div>
+
+    <div class="col-12">
+      <label for="remarks">Remarks</label>
+      <textarea
+        id="remarks"
+        name="remarks"
+        pInputTextarea
+        [(ngModel)]="bedDetail.remarks"
+        rows="3"
+        cols="20"
+      ></textarea>
+    </div>
+  </div>
+  <button
+    type="submit"
+    style="margin-top: 6rem"
+    pButton
+    pRipple
+    label="Save"
+    (click)="save()"
+    icon="pi pi-check"
+  ></button>
+</div>

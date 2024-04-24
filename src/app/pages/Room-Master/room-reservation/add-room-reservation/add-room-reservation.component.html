@@ -1,0 +1,58 @@
+<div class="card">
+    <div class="grid p-fluid mb-2">
+
+      <div class="col-12">
+        <label for="room">Room <span>(*)</span></label>
+        <p-dropdown
+        [options]="availableNonReservedRooms"
+        [(ngModel)]="selectedRoom"
+        id="room"
+        name="room"
+        optionLabel="roomNo"
+        placeholder="Select Room To Reserve"
+      ></p-dropdown>
+      </div>
+
+      <div class="col-6">
+        <label for="bookingStartDate">Start Date <span>(*)</span></label>
+        <p-calendar
+          name="bookingStartDate"
+          [(ngModel)]="advanceBooking.bookingStartDate"
+          [showIcon]="true"
+          dateFormat="dd.mm.yy"
+        ></p-calendar>
+      </div>
+
+      <div class="col-6">
+        <label for="bookingEndDate">End Date <span>(*)</span></label>
+        <p-calendar
+          name="bookingEndDate"
+          [(ngModel)]="advanceBooking.bookingEndDate"
+          [showIcon]="true"
+          dateFormat="dd.mm.yy"
+        ></p-calendar>
+      </div>
+
+      <div class="col-12">
+        <label for="remarks">Remarks</label>
+        <textarea
+          id="remarks"
+          name="remarks"
+          pInputTextarea
+          [(ngModel)]="advanceBooking.remarks"
+          rows="3"
+          cols="20"
+        ></textarea>
+      </div>
+
+    </div>
+    <button
+      type="submit"
+      style="margin-top: 15rem"
+      pButton
+      pRipple
+      label="Save"
+      (click)="save()"
+      icon="pi pi-check"
+    ></button>
+</div>

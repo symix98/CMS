@@ -1,0 +1,31 @@
+<h4>Employee Master</h4>
+
+<div class="field col-12 md:col-12 card" style="padding: 20px;">
+    <p-toolbar>
+        <div class="p-toolbar-group-left">
+            <p-button label="Add" icon="pi pi-plus" (onClick)="addNewEmployee()"></p-button>
+        </div>
+        <!-- <div class="w-5 p-inputgroup">
+            <input type="text" pInputText placeholder="Keyword"><button type="button" pButton pRipple
+                icon="pi pi-search"></button>
+        </div> -->
+        <div class="p-toolbar-group-right">
+            <button class="mr-2" icon="pi pi-cloud-upload" pButton type="button" label="Batch Update" (click)="batchUpload()"
+                style="background-color: #2196f3; width: fit-content"></button>
+            <button class="mr-2" pButton type="button" label="Download Template" icon="pi pi-cloud-download"
+                [disabled]="" style="background-color: #2196f3; width: fit-content"
+                (click)="downloadTemplate()"></button>
+        </div>
+    </p-toolbar>
+
+    <div style="padding: 6px; margin-top: 10px;">
+        <app-table-template *ngIf='tableParam' #tbl [tableParam]="tableParam">
+        </app-table-template>
+    </div>
+
+    <div style="padding: 6px; margin-top: 10px;">
+        <h5>Room Transaction History</h5>
+        <app-table-template *ngIf='roomtableParam' #tbl [tableParam]="roomtableParam">
+        </app-table-template>
+    </div>
+</div>

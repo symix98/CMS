@@ -1,0 +1,188 @@
+<div class="p-fluid p-formgrid grid card">
+    <div class="field col-12 md:col-3">
+        <label for="badgeNo">Badge No <span class="requiredfield"> *</span></label>
+        <input #badgeNo="ngModel" name="templateName" type="text" required pInputText [(ngModel)]="employeeForm.badgeNo"
+            autocomplete="off" autofocus
+            [ngClass]="{'ng-dirty': (badgeNo.invalid && isSubmitted) || (badgeNo.dirty && badgeNo.invalid)}">
+        <small *ngIf="(badgeNo.invalid && isSubmitted) || (badgeNo.dirty && badgeNo.invalid)" class="p-error">Badge No
+            is required.</small>
+    </div>
+
+    <div class="field col-12 md:col-3">
+        <label for="employeeName">Employee Name <span class="requiredfield"> *</span></label>
+        <input #employeeName="ngModel" name="templateName" type="text" required pInputText
+            [(ngModel)]="employeeForm.employeeName" autocomplete="off"
+            [ngClass]="{'ng-dirty': (employeeName.invalid && isSubmitted) || (employeeName.dirty && employeeName.invalid)}">
+        <small *ngIf="(employeeName.invalid && isSubmitted) || (employeeName.dirty && employeeName.invalid)"
+            class="p-error">Employee Name is required.</small>
+    </div>
+
+    <div class="field col-12 md:col-3">
+        <label for="jobTitle">Job Title <span class="requiredfield"> *</span></label>
+        
+        <input #jobTitle="ngModel" name="templateName" type="text" required pInputText
+            [(ngModel)]="employeeForm.jobTitle" autocomplete="off"
+            [ngClass]="{'ng-dirty': (jobTitle.invalid && isSubmitted) || (jobTitle.dirty && jobTitle.invalid)}">
+        <small *ngIf="(jobTitle.invalid && isSubmitted) || (jobTitle.dirty && jobTitle.invalid)"
+            class="p-error">Job Title is required.</small>
+
+        <!-- <p-dropdown #jobTitle [options]="jobTitleList" [(ngModel)]="selectedJobTitle" [showClear]="true"
+            optionLabel="label" optionValue="label" placeholder="Select Job Title"
+            [ngClass]="{'ng-dirty': (jobTitle.invalid && isSubmitted) || (jobTitle.dirty && jobTitle.invalid)}"></p-dropdown>
+        <small *ngIf="(jobTitle.invalid && isSubmitted) || (jobTitle.dirty && jobTitle.invalid)" class="p-error">Job
+            Title is required.</small> -->
+    </div>
+
+    <div class="field col-12 md:col-3">
+        <label for="nationality">Nationality <span class="requiredfield"> *</span></label>
+
+        <p-dropdown #nationality [options]="nationalityList" [(ngModel)]="selectedNationality" [showClear]="true"
+            optionLabel="name" optionValue="name" placeholder="Select Nationality"
+            [ngClass]="{'ng-dirty': (nationality.invalid && isSubmitted) || (nationality.dirty && nationality.invalid)}"></p-dropdown>
+        <small *ngIf="(nationality.invalid && isSubmitted) || (nationality.dirty && nationality.invalid)"
+            class="p-error">Nationality is required.</small>
+    </div>
+
+    <div class="field col-12 md:col-3">
+        <label for="category">Employee Category</label>
+        <p-dropdown #category [options]="empCategoryList" [(ngModel)]="selectedEmpCategory" [showClear]="true"
+            optionLabel="name" optionValue="name" placeholder="Select Employee Category"
+            [ngClass]="{'ng-dirty': (category.invalid && isSubmitted) || (category.dirty && category.invalid)}"></p-dropdown>
+        <small *ngIf="(category.invalid && isSubmitted) || (category.dirty && category.invalid)"
+            class="p-error">Employee Category is required.</small>
+    </div>
+
+    <div class="field col-12 md:col-3">
+        <label for="contractBase">Contract Base</label>
+        <p-dropdown #contractBase [options]="contractBaseList" [(ngModel)]="selectedContractBase" [showClear]="true"
+            optionLabel="label" optionValue="label" placeholder="Select Contract Base"
+            [ngClass]="{'ng-dirty': (contractBase.invalid && isSubmitted) || (contractBase.dirty && category.invalid)}"></p-dropdown>
+        <small *ngIf="(contractBase.invalid && isSubmitted) || (contractBase.dirty && contractBase.invalid)"
+            class="p-error">Contact Base is required.</small>
+    </div>
+
+    <div class="field col-12 md:col-3">
+        <label for="band">Band</label>
+        <p-dropdown #band [options]="bandList" [(ngModel)]="selectedBand" [showClear]="true" optionLabel="label"
+            optionValue="label" placeholder="Select Band"></p-dropdown>
+    </div>
+
+    <div class="field col-12 md:col-3">
+        {{selectedEqvBand}}
+        <label for="eqvBand">Equivalent Band</label>
+        <p-dropdown #eqvBand [options]="eqvBandList" [(ngModel)]="selectedEqvBand" [showClear]="true"
+            optionLabel="label" optionValue="label" placeholder="Select Equivalent Band"></p-dropdown>
+    </div>
+
+    <div class="field col-12 md:col-3">
+        <label for="project">Project</label>
+        <p-dropdown #project [options]="projectList" [(ngModel)]="selectedProject" [showClear]="true" optionLabel="name"
+            optionValue="name" placeholder="Select Project"></p-dropdown>
+    </div>
+
+
+    <div class="field col-12 md:col-3">
+        <label for="isCcc">CCC / Subcontractor</label>
+        <p-selectButton [options]="stateOptions" [(ngModel)]="employeeForm.isCcc" optionLabel="label"
+            optionValue="value"></p-selectButton>
+    </div>
+
+    <div class="field col-12 md:col-3">
+        <label for="company">Company</label>
+        <p-dropdown #company [options]="companyList" [(ngModel)]="selectedCompany" [showClear]="true"
+            optionLabel="name" optionValue="name" placeholder="Select Company"></p-dropdown>
+    </div>
+
+    <div class="field col-12 md:col-3">
+        <label for="workLocation">Work Location</label>
+        <p-dropdown #workLocation [options]="workLocationList" [(ngModel)]="selectedWorkLoc" [showClear]="true"
+            optionLabel="label" optionValue="label" placeholder="Select Work Location"></p-dropdown>
+    </div>
+
+    <div class="field col-12 md:col-3">
+        <label for="messEntitlment">Mess Entitlment</label>
+        <p-dropdown #messEntitlment [options]="messEntitleList" [(ngModel)]="selectedMessEntitle" [showClear]="true"
+            optionLabel="label" optionValue="label" placeholder="Select Mess Entitlment"></p-dropdown>
+    </div>
+
+    <div class="field col-12 md:col-3">
+        <label for="mealCategory">Meal Category</label>
+        <p-dropdown #mealCategory [options]="mealCategoryList" [(ngModel)]="selectedMealCategory" [showClear]="true"
+            optionLabel="label" optionValue="label" placeholder="Select Meal Category"></p-dropdown>
+    </div>
+
+    <div class="field col-12 md:col-3">
+        <label for="mealType">Meal Type</label>
+        <p-dropdown #mealType [options]="mealTypeList" [(ngModel)]="selectedMealType" [showClear]="true"
+            optionLabel="label" optionValue="label" placeholder="Select Meal Type"></p-dropdown>
+    </div>
+
+    <div class="field col-12 md:col-3">
+        <label for="religion">Religion</label>
+        <p-dropdown #religion [options]="religionList" [(ngModel)]="selectedReligion" [showClear]="true"
+            optionLabel="label" optionValue="label" placeholder="Select Religion"></p-dropdown>
+    </div>
+
+    <div class="field col-12 md:col-3">
+        <label for="employeeActive">Active</label>
+
+        <div class="p-inputgroup">
+            <span class="p-inputgroup-addon"><input type="checkbox" size="auto"
+                    [(ngModel)]="employeeForm.employeeActive"></span>
+            <input type="text" pInputText value="Active" readonly="true">
+        </div>
+    </div>
+
+    <div class="field col-12 md:col-3">
+        <label for="inactiveReason">Inactive Reason</label>
+        <p-dropdown #inactiveReason [options]="inactiveReasonList" [(ngModel)]="selectedInactiveReason"
+            [showClear]="true" optionLabel="name" optionValue="name"
+            placeholder="Select Inactive Reason"></p-dropdown>
+    </div>
+
+    <div class="field col-12 md:col-3">
+        <label for="passportNo">Passport No</label>
+        <input name="passportNo" type="text" pInputText [(ngModel)]="employeeForm.passportNo" autocomplete="off" />
+    </div>
+
+    <div class="field col-12 md:col-3">
+        <label for="qidNo">QID No</label>
+        <input name="qidNo" type="text" pInputText [(ngModel)]="employeeForm.qidNo" autocomplete="off" />
+    </div>
+
+    <div class="field col-12 md:col-3">
+        <label for="mobileno">Mobile No</label>
+        <input name="mobileNo" type="text" pInputText [(ngModel)]="employeeForm.mobileNo" autocomplete="off" />
+    </div>
+
+    <div class="field col-12 md:col-3">
+        <label for="email">Email</label>
+        <input #empemail="ngModel" name="templateName" type="email" email pInputText [(ngModel)]="employeeForm.email"
+            autocomplete="off"
+            [ngClass]="{'ng-dirty': (empemail.invalid && isSubmitted) || (empemail.dirty && empemail.invalid)}">
+        <small *ngIf="(empemail.invalid && isSubmitted) || (empemail.dirty && empemail.invalid)" class="p-error">Invalid
+            Email.</small>
+    </div>
+
+    <div class="field col-12 md:col-3">
+        <label for="messCard">Mess Card</label>
+        <input name="messCard" type="text" pInputText [(ngModel)]="employeeForm.messCard" autocomplete="off" />
+    </div>
+
+    <div class="field col-12 md:col-3">
+        <label for="milkCard">Milk Card</label>
+        <input name="milkCard" type="text" pInputText [(ngModel)]="employeeForm.milkCard" autocomplete="off" />
+    </div>
+</div>
+
+<div class="grid grid-nogutter justify-content-between" style="margin-top: 20px;">
+    <div class="grid grid-nogutter justify-content-start">
+    </div>
+
+    <div class="grid grid-nogutter justify-content-end">
+        <p-button icon="pi pi-save" iconPos="left" [label]="buttonLabel" (onClick)="saveEmployeeDetails()"
+            class="mr-2"></p-button>
+        <button style="width: 128px;" pButton icon="pi pi-times" label="Close" (click)="closeForm()"></button>
+
+    </div>
+</div>

@@ -1,0 +1,110 @@
+<div class="card">
+    <div class="grid p-fluid mb-2">
+
+      <div class="col-3">
+        <label for="badgeNo">Badge Number <span>(*)</span></label>
+        <input
+          type="text"
+          pInputText
+          id="badgeNo"
+          name="badgeNo"
+          [(ngModel)]="transactions.badgeNo"
+        />
+      </div>
+
+      <div class="col-3">
+        <label for="roomNo">Room Number <span>(*)</span></label>
+        <p-dropdown
+          [options]="availableRooms"
+          [(ngModel)]="selectedRoom"
+          id="roomNo"
+          name="roomNo"
+          optionLabel="roomNo"
+          placeholder="Select Room Number"
+        ></p-dropdown>
+      </div>
+
+      <div class="col-3">
+        <label for="checkInDate">Check-In Date <span>(*)</span></label>
+        <p-calendar
+          name="checkInDate"
+          [(ngModel)]="transactions.checkInDate"
+          [showIcon]="true"
+           dateFormat="dd.mm.yy"
+        ></p-calendar>
+      </div>
+
+      <div class="col-3">
+        <label for="bedNo">Bed Number</label>
+        <input
+          type="text"
+          pInputText
+          id="bedNo"
+          name="bedNo"
+          [(ngModel)]="transactions.bedNo"
+        />
+      </div>
+
+      <div class="col-3">
+        <label for="checkoutDate">Check-Out Date</label>
+        <p-calendar
+          name="checkOutDate"
+          [(ngModel)]="transactions.checkOutDate"
+          [showIcon]="true"
+           dateFormat="dd.mm.yy"
+        ></p-calendar>
+      </div>
+
+      <div class="col-3">
+        <label for="LeaveStartDt">Leave Start Date</label>
+        <p-calendar
+          name="LeaveStartDt"
+          [(ngModel)]="transactions.leaveStartDate"
+          [showIcon]="true"
+           dateFormat="dd.mm.yy"
+        ></p-calendar>
+      </div>
+
+      <div class="col-3">
+        <label for="LeaveEndDt">Leave End Date</label>
+        <p-calendar
+          name="LeaveEndDt"
+          [(ngModel)]="transactions.leaveEndDate"
+          [showIcon]="true"
+           dateFormat="dd.mm.yy"
+        ></p-calendar>
+      </div>
+
+      <div class="col-3">
+        <label for="guestStatus">Guest Status <span>(*)</span></label>
+        <p-dropdown
+          [options]="guestStatuses"
+          [(ngModel)]="selectedGuestStatus"
+          name="guestStatus"
+          optionLabel="name"
+          placeholder="Select Guest Status"
+        ></p-dropdown>
+      </div>
+
+      <div class="col-12">
+        <label for="remarks">Remarks</label>
+        <textarea
+          id="remarks"
+          name="remarks"
+          pInputTextarea
+          [(ngModel)]="transactions.remarks"
+          rows="3"
+          cols="20"
+        ></textarea>
+      </div>
+    </div>
+</div>
+
+<button
+style="margin-top: 10rem;"
+pButton
+pRipple
+label="Save"
+icon="pi pi-check"
+(click)="saveTransaction()"
+></button>

@@ -1,0 +1,202 @@
+<div class="card">
+  <div class="grid p-fluid mb-2">
+
+    <div class="col-12">
+      <label for="roomDescription">Description</label>
+      <input
+        type="text"
+        pInputText
+        id="roomDescription"
+        name="roomDescription"
+        [(ngModel)]="room.roomDescription"
+      />
+    </div>
+
+    <div class="col-4">
+      <label for="roomAllocations">Room Allocation <span>(*)</span></label>
+      <input
+        type="text"
+        pInputText
+        id="roomAllocations"
+        name="roomAllocations"
+        [(ngModel)]="room.roomAllocation"
+      />
+    </div>
+
+    <div class="col-4">
+      <label for="block">Block <span>(*)</span></label>
+      <input
+        type="text"
+        pInputText
+        id="block"
+        name="block"
+        [(ngModel)]="room.block"
+      />
+    </div>
+
+    <div class="col-4">
+      <label for="floor">Floor <span>(*)</span></label>
+      <input
+        type="text"
+        pInputText
+        id="floor"
+        name="floor"
+        [(ngModel)]="room.floor"
+      />
+    </div>
+
+    <div class="col-4">
+      <label for="bedCount">Bed Count <span>(*)</span></label>
+      <p-inputNumber
+        [showButtons]="true"
+        inputId="bedCount"
+        [(ngModel)]="room.bedCount"
+        [min]="1"
+        [max]="8"
+        placeholder="8 beds max"
+      >
+      </p-inputNumber>
+    </div>
+
+    <div class="col-4">
+      <label for="floor">Room Number <span>(*)</span></label>
+      <input
+        type="text"
+        pInputText
+        id="roomNo"
+        name="roomNo"
+        [(ngModel)]="room.roomNo"
+      />
+    </div>
+
+    <div class="col-4">
+      <label for="campId">Camp <span>(*)</span></label>
+      <p-dropdown
+        [options]="campIds"
+        [(ngModel)]="room.camp"
+        name="campId"
+        optionLabel="campName"
+        placeholder="Select Camp"
+      ></p-dropdown>
+    </div>
+
+    <div class="col-4">
+      <label for="availableFrom">Available From</label>
+      <p-calendar
+        name="availableFrom"
+        [(ngModel)]="room.availableFrom"
+        [showIcon]="true"
+        dateFormat="dd.mm.yy"
+      ></p-calendar>
+    </div>
+
+    <div class="col-4">
+      <label for="roomStatus">Room Status <span>(*)</span></label>
+      <p-dropdown
+        [options]="roomStatuses"
+        [(ngModel)]="selectedRoomStatus"
+        name="roomStatus"
+        optionLabel="name"
+        placeholder="Select Room Status"
+      ></p-dropdown>
+    </div>
+
+    <div class="col-4">
+      <label for="cateringId">Catering</label>
+      <p-dropdown
+        [options]="cateringIds"
+        [(ngModel)]="room.catering"
+        name="cateringId"
+        optionLabel="cateringName"
+        placeholder="Select Catering"
+      ></p-dropdown>
+    </div>
+
+    <div class="col-4">
+      <label for="dailyRate">Daily Rate</label>
+      <p-inputNumber
+        [min]="1"
+        [showButtons]="true"
+        inputId="dailyRate"
+        [(ngModel)]="room.dailyRate"
+      >
+      </p-inputNumber>
+    </div>
+
+    <div class="col-4">
+      <label for="monthlyRate">Monthly Rate</label>
+      <p-inputNumber
+        [min]="1"
+        [showButtons]="true"
+        inputId="monthlyRate"
+        [(ngModel)]="room.monthlyRate"
+      >
+      </p-inputNumber>
+    </div>
+
+    <div class="col-4">
+      <label for="bedRate">Bed Rate</label>
+      <p-inputNumber
+        [min]="1"
+        [showButtons]="true"
+        inputId="bedRate"
+        [(ngModel)]="room.bedRate"
+      >
+      </p-inputNumber>
+    </div>
+
+    <div class="col-4">
+      <label for="reservationRate">Reservation Rate</label>
+      <p-inputNumber
+        [min]="1"
+        [showButtons]="true"
+        inputId="reservationRate"
+        [(ngModel)]="room.reservationRate"
+      >
+      </p-inputNumber>
+    </div>
+
+    <!-- <div class="col-12">
+      <label for="roomConfiguration">Configuration</label>
+      <textarea
+        id="roomConfiguration"
+        name="roomConfiguration"
+        pInputTextarea
+        [(ngModel)]="room.roomConfiguration"
+        rows="3"
+        cols="20"
+      ></textarea>
+    </div> -->
+
+    <div class="col-12">
+      <label for="remarks">Remarks</label>
+      <textarea
+        id="remarks"
+        name="remarks"
+        pInputTextarea
+        [(ngModel)]="room.remarks"
+        rows="3"
+        cols="20"
+      ></textarea>
+    </div>
+    <div class="col-12">
+      <p-checkbox
+        id="bedOnly"
+        name="bedOnly"
+        inputId="binary"
+        [(ngModel)]="room.bedOnly"
+        [binary]="true"
+        label="Bed Only?"
+      ></p-checkbox>
+    </div>
+  </div>
+  <button
+    type="submit"
+    style="margin-top: 4rem"
+    pButton
+    pRipple
+    label="Save"
+    (click)="save()"
+    icon="pi pi-check"
+  ></button>
+</div>
